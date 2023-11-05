@@ -2,24 +2,34 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image } from 'react-native';
 
 // A component, 1 component per js
-const RestaurantItem = ( {restaurant} ) => {
+const RestaurantItem = ( { restaurant } ) => {
   
   return(
     <View style={styles.restaurant_Container}>
       <Image 
         source ={{
-          uri:restaurant.image,
+          uri: restaurant.image,
         }}
         style={styles.image} 
       />
-      <Text style={styles.title}>{restaurant.name}</Text>
-      <Text style={styles.subtitle}>${restaurant.deliveryFee}      {
-        restaurant.minDeliveryTime
-      }-{
-        restaurant.maxDeliveryTime
-      } mins
-      </Text>
+
+      <View style={styles.row}>
+        <View>
+          <Text style={styles.title}>{restaurant.name}</Text>
+          <Text style={styles.subtitle}>${restaurant.deliveryFee}      {
+            restaurant.minDeliveryTime
+          }-{
+            restaurant.maxDeliveryTime
+          } mins
+          </Text>
+        </View>
+        
+        <View style={styles.rating}>
+          <Text>{restaurant.rating}</Text>
+        </View>
+      
       </View>
+    </View>
   );
 };
 
@@ -36,22 +46,33 @@ const styles = StyleSheet.create({
     },
     restaurant_Container:{
       width:'100%',
-      marginVertical:5,
+      marginVertical:10,
     },
     image:{
       width: "100%",
-      // height: 10,
       aspectRatio: 5/3,
       marginBottom: 5,
     },
     title:{
-      fontSize: 16,
+      fontSize: 19,
       fontWeight: 500,
-      MarginVertical: 5,
+      marginVertical: 5,
     },
     subtitle:{
-      color: "grey",
-  
+      color: "grey", 
+    },
+    row:{
+      flexDirection:"row",
+      alignItems: "center"
+    },
+    rating: {
+      marginLeft: "auto",
+      backgroundColor:"lightgray",
+      width: 25,
+      height: 25,
+      alignItems: "center",
+      justifyContent: "center",
+      borderRadius: 30,
     },
   });
   
